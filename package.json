@@ -22,6 +22,7 @@
     "geolocation": "^0.2.0",
     "react-router": "^2.5.2",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "express": "*",
   }
 }
