@@ -17,13 +17,12 @@ var About = () => {
                         <li>CSS</li>
                         <li>JavaScript</li>
                         <li>jQuery</li>
-                        <li>Angular.JS</li>
                         <li>React.JS</li>
                         <li>Ruby on Rails</li>
                     </ul>
                     <h5>Contacts:</h5>
                     <ul>
-                        <li>Link to github profile <a href="#">alekseylovchikov</a></li>
+                        <li>Link to github profile <a href="https://github.com/alekseylovchikov" target="_blank">alekseylovchikov</a></li>
                         <li>Email: <a href="mailto:aleksey.lovchikov@gmail.com">aleksey.lovchikov@gmail.com</a></li>
                         <li>Skype: lovchikov_aleksey</li>
                         <li>Tel: +7 999 223-92-97</li>
