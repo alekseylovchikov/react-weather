@@ -19,7 +19,6 @@ var Nav = () => {
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
                         <li><IndexLink to="/" activeClassName="active" activeStyle={ ActiveStyle }>Home</IndexLink></li>
-                        <li><Link to="/saved" activeClassName="active" activeStyle={ ActiveStyle }>Saved</Link></li>
                         <li><Link to="/about" activeClassName="active" activeStyle={ ActiveStyle }>About</Link></li>
                     </ul>
                 </div>

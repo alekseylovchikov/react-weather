@@ -19,9 +19,6 @@ var WeatherInfo = ({ city, temp, desc }) => {
                     </tr>
                 </tbody>
             </table>
-            <div className="text-center">
-                <button className="btn btn-success">Save Result</button>
-            </div>
         </div>    
     );
 };
