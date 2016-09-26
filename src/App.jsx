@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var { 
+var {
     Router,
     Route,
     browserHistory,
@@ -9,6 +9,8 @@ var {
 
 require('style!css!foundation-sites/dist/foundation.min.css');
 $(document).foundation();
+
+require('style!css!applicationStyles');
 
 // components
 var Main = require('Main');

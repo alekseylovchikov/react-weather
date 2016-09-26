@@ -33,7 +33,8 @@ module.exports = {
             getWeather: 'src/api/weather-api.js',
             getCity: 'src/api/google-get-city.js',
             NotFound: 'src/components/NotFound.jsx',
-            ErrorModal: 'src/components/ErrorModal.jsx'
+            ErrorModal: 'src/components/ErrorModal.jsx',
+            applicationStyles: 'src/styles/app.css'
         }
     },
     module: {
