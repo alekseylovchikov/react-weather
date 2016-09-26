@@ -34,7 +34,7 @@ module.exports = {
             getCity: 'src/api/google-get-city.js',
             NotFound: 'src/components/NotFound.jsx',
             ErrorModal: 'src/components/ErrorModal.jsx',
-            applicationStyles: 'src/styles/app.css'
+            applicationStyles: 'src/styles/app.scss'
         }
     },
     module: {
