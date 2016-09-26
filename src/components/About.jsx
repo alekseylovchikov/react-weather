@@ -4,7 +4,7 @@ var { Link } = require('react-router');
 var About = () => {
     return (
         <div className="well">
-          <h1 className="text-center page-title">About</h1>
+          <h1 className="text-center">About</h1>
           <div className="large-4 medium-4 columns">
             <img src="https://pp.vk.me/c630516/v630516652/315b7/MmbCAjHPAWc.jpg" width="100%" />
           </div>

@@ -20,22 +20,24 @@ var Weather = React.createClass({
     },
     componentWillMount: function() {
         var self = this;
-        geolocation.getCurrentPosition(function (err, data) {
-            if (err) throw new Error(err);
-
-            getCity.getCity(data.coords.latitude, data.coords.longitude).then(function(data) {
-                self.handleSearch(data);
-            }, function(err) {
-                console.log(err);
-            });
-        });
+        // geolocation.getCurrentPosition(function (err, data) {
+        //     if (err) throw new Error(err);
+        //
+        //     getCity.getCity(data.coords.latitude, data.coords.longitude).then(function(data) {
+        //         self.handleSearch(data);
+        //     }, function(err) {
+        //         console.log(err);
+        //     });
+        // });
     },
     handleSearch: function(city) {
         var self = this;
 
         this.setState({
           isLoading: true,
-          errorMessage: undefined
+          errorMessage: undefined,
+          location: undefined,
+          temp: undefined
         });
 
         getWeather.getTemp(city).then(function(temp) {
@@ -51,6 +53,22 @@ var Weather = React.createClass({
                 errorMessage: err.message
             });
         });
+    },
+    componentDidMount: function() {
+      var location = this.props.location.query.location;
+
+      if (location && location.length > 0) {
+        this.handleSearch(location);
+        // window.location.hash = '';
+      }
+    },
+    componentWillReceiveProps: function(newProps) {
+      var location = newProps.location.query.location;
+
+      if (location && location.length > 0) {
+        this.handleSearch(location);
+        // window.location.hash = '';
+      }
     },
     render: function() {
         var { isLoading, city, temp, desc, errorMessage } = this.state;

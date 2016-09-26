@@ -7,9 +7,15 @@ var ActiveStyle = {
 
 var Nav = React.createClass({
     onSearch: function(e) {
-        var citySearch = e.target;
         e.preventDefault();
-        console.log(citySearch);
+
+        var searchCity = this.refs.searchCity.value;
+        var encodeLocation = encodeURIComponent(searchCity);
+
+        if (searchCity.length > 0) {
+          this.refs.searchCity.value = '';
+          window.location = '/?location=' + encodeLocation;
+        }
     },
     render: function() {
         return (
@@ -25,7 +31,7 @@ var Nav = React.createClass({
                     <form onSubmit={this.onSearch}>
                         <ul className="menu">
                             <li>
-                                <input type="search" placeholder="Search weather" />
+                                <input type="search" ref="searchCity" placeholder="Search weather" />
                             </li>
                             <li>
                                 <input type="submit" value="Search" className="button" />
