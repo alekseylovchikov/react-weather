@@ -3,6 +3,7 @@ var { Link } = require('react-router');
 
 var WeatherForm = require('WeatherForm');
 var WeatherInfo = require('WeatherInfo');
+var ErrorModal = require('ErrorModal');
 // api
 var getWeather = require('getWeather');
 var getCity = require('getCity');
@@ -32,7 +33,10 @@ var Weather = React.createClass({
     handleSearch: function(city) {
         var self = this;
 
-        this.setState({ isLoading: true });
+        this.setState({
+          isLoading: true,
+          errorMessage: undefined
+        });
 
         getWeather.getTemp(city).then(function(temp) {
             self.setState({
@@ -44,13 +48,12 @@ var Weather = React.createClass({
         }, function(err) {
             self.setState({
                 isLoading: false,
+                errorMessage: err.message
             });
-
-            console.error(err);
         });
     },
     render: function() {
-        var { isLoading, city, temp, desc } = this.state;
+        var { isLoading, city, temp, desc, errorMessage } = this.state;
 
         function renderMessage() {
             if (isLoading) {
@@ -71,10 +74,19 @@ var Weather = React.createClass({
             }
         }
 
+        function renderError() {
+          if (typeof errorMessage === 'string') {
+            return (
+              <ErrorModal error={errorMessage} />
+            );
+          }
+        }
+
         return (
             <div>
                 <WeatherForm onSearch={ this.handleSearch } />
                 { renderMessage() }
+                { renderError() }
                 <h2>Examples</h2>
                 <ol>
                   <li><Link to="/?location=Moscow">Moscow, RU</Link></li>
