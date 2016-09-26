@@ -1,4 +1,5 @@
 var React = require('react');
+var { Link } = require('react-router');
 
 var WeatherForm = require('WeatherForm');
 var WeatherInfo = require('WeatherInfo');
@@ -16,11 +17,11 @@ var Weather = React.createClass({
             isLoading: false,
         };
     },
-    componentDidMount: function() {
+    componentWillMount: function() {
         var self = this;
         geolocation.getCurrentPosition(function (err, data) {
             if (err) throw new Error(err);
-            
+
             getCity.getCity(data.coords.latitude, data.coords.longitude).then(function(data) {
                 self.handleSearch(data);
             }, function(err) {
@@ -30,9 +31,9 @@ var Weather = React.createClass({
     },
     handleSearch: function(city) {
         var self = this;
-        
+
         this.setState({ isLoading: true });
-        
+
         getWeather.getTemp(city).then(function(temp) {
             self.setState({
                 city: city,
@@ -42,38 +43,43 @@ var Weather = React.createClass({
             });
         }, function(err) {
             self.setState({
-                isLoading: false,    
+                isLoading: false,
             });
-            
-            alert(err);
+
+            console.error(err);
         });
     },
     render: function() {
         var { isLoading, city, temp, desc } = this.state;
-        
+
         function renderMessage() {
             if (isLoading) {
                 return (
                     <div>
                         <h1 className="text-center">Loading...</h1>
-                        <div className="progress progress-striped active">
-                            <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{width: '100%'}}>
-                                <span className="sr-only">100% Complete</span>
-                            </div>
-                        </div>
                     </div>
                 );
             } else if (temp && city) {
                 return <WeatherInfo city={ city } temp={ temp } desc={ desc } />;
             } else {
-                // none    
+                return (
+                    <div>
+                        <h1 className="text-center">Sorry... Can't find weather info</h1>
+                        <h4 className="text-center">Try later</h4>
+                    </div>
+                );
             }
         }
-        
+
         return (
             <div>
                 <WeatherForm onSearch={ this.handleSearch } />
                 { renderMessage() }
+                <h2>Examples</h2>
+                <ol>
+                  <li><Link to="/?location=Moscow">Moscow, RU</Link></li>
+                  <li><Link to="/?location=Chicago">Chicago, US</Link></li>
+                </ol>
             </div>
         );
     }

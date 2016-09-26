@@ -2,14 +2,18 @@ var React = require('react');
 
 var Nav = require('Nav');
 
+var heroHeader = {
+    padding: '80px'
+};
+
 var Main = (props) => {
     return (
         <div>
             <Nav />
-            <div className="hero-header">
-                <h1 className="text-center">Weather Redux App</h1>
+            <div style={heroHeader}>
+                <h1 className="text-center">Weather App</h1>
             </div>
-            <div className="container">
+            <div className="row">
                 { props.children }
             </div>
         </div>

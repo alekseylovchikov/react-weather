@@ -1,6 +1,5 @@
 var axios = require('axios');
 
-// cbac7752e278d0d116576faa2d3b8ac4
 const WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=cbac7752e278d0d116576faa2d3b8ac4&units=metric&lang=ru&q=';
 
 module.exports = {
@@ -15,7 +14,7 @@ module.exports = {
             } else {
                 return {
                     temp: res.data.main.temp,
-                    desc: res.data.weather[0].description,
+                    desc: res.data.weather[0].description
                 };
             }
         }, function(err) {

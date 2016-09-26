@@ -1,8 +1,23 @@
+var webpack = require('webpack');
+
 module.exports = {
-    entry: './src/App.jsx',
+    entry: [
+        'script!jquery/dist/jquery.min.js',
+        'script!foundation-sites/dist/foundation.min.js',
+        './src/App.jsx'
+    ],
+    externals: {
+        jquery: 'jQuery'
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery'
+        })
+    ],
     output: {
         path: __dirname + '/public/js/',
-        filename: 'bundle.js',
+        filename: 'bundle.js'
     },
     resolve: {
         root: __dirname,
@@ -17,7 +32,7 @@ module.exports = {
             WeatherInfo: 'src/components/WeatherInfo.jsx',
             getWeather: 'src/api/weather-api.js',
             getCity: 'src/api/google-get-city.js',
-            NotFound: 'src/components/NotFound.jsx',
+            NotFound: 'src/components/NotFound.jsx'
         }
     },
     module: {
@@ -25,12 +40,12 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'es2015', 'stage-0'],
+                    presets: ['react', 'es2015', 'stage-0']
                 },
                 test: /\.jsx?$/,
-                exlcude: /node_modules/,
-            },
-        ],
+                exlcude: /node_modules/
+            }
+        ]
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'cheap-module-eval-source-map'
 };
