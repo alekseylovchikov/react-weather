@@ -65,7 +65,7 @@ var Weather = React.createClass({
                 return (
                     <div>
                         <h1 className="text-center">Sorry... Can't find weather info</h1>
-                        <h4 className="text-center">Try later</h4>
+                        <h3 className="text-center">Try later</h3>
                     </div>
                 );
             }
